@@ -1,0 +1,29 @@
+# S9_firmware
+File system source code of S9
+
+These are the setup scripts for the Angstrom buildsystem. If you want to (re)build packages or images for Angstrom, this is the thing to use.
+The Angstrom buildsystem is using various components from the Yocto Project, most importantly the Openembedded buildsystem, the bitbake task executor and various application and BSP layers.
+
+This Angstrom release (v2013.12) is officially Yocto Project Compatible with the Yocto Project release 1.5 ("Danny").
+
+To configure the scripts and download the build metadata, do:
+
+	$ MACHINE=socfpga_cyclone5 ./oebb.sh config socfpga_cyclone5
+
+You can change the 'socfpga_cyclone5' in the commandline above with socfpga_arria5.
+
+To start a build of the kernel, source the environment file and do:
+
+	$ . environment-angstromv2013.12
+	$ MACHINE=socfpga_cyclone5 bitbake linux-altera-ltsi
+
+To build the latest stable kernel, run the following:
+    $ export KERNEL_PROVIDER="linux-altera"
+    $ export BB_ENV_EXTRAWHITE="${BB_ENV_EXTRAWHITE} KERNEL_PROVIDER"
+    $ MACHINE=socfpga_cyclone5 bitbake linux-altera
+
+To build the root file system:
+
+
+    $ MACHINE=socpfga_cyclone5 bitbake console-image
+
